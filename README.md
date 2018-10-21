@@ -10,7 +10,7 @@ The program outputs all public repositories of the user, and for each repository
 It uses GitHub REST API v3.
 
 ## Instructions
-Built with: Java 9  
+Built with: Java 8
 Dependency system: Gradle 4.6
 
 Dependencies:  
@@ -21,12 +21,17 @@ Dependencies:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,junit 5  
 
 To build and run the application:  
-   1) clone the GitHub repository [mberionni/playground](https://github.com/mberionni/playground) in a local directory  
-   2) set the environment variable GITHUB\_OAUTH\_TOKEN with the desired token, for example in the .profile:  
+   1) set the environment variable GITHUB\_OAUTH\_TOKEN with the desired token, for example in the .profile:  
        export GITHUB_OAUTH_TOKEN="yyyyyy"
+   
+   2) clone the GitHub repository in a local directory :   
+   	
+   	 git clone https://github.com/mberionni/playground.git
+   
    3) build the project (and run the tests):  
     
-	gradle build
+    cd playground
+    gradle build
 	
    4) run the application passing the github $username
 
