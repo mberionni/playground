@@ -1,0 +1,46 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.9
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.eclipse.org/content/repositories/egit-releases" }
+}
+
+sourceSets {
+	main.java.srcDirs = ['src']
+	test.java.srcDirs = ['test/src']
+}
+
+dependencies {
+	testImplementation(
+    	'org.junit.jupiter:junit-jupiter-api:5.1.0',
+        'org.junit.platform:junit-platform-launcher:1.1.0',
+        'org.mockito:mockito-core:2.21.0',
+        'org.mockito:mockito-junit-jupiter:2.17.0'
+    )
+    testRuntimeOnly(
+        'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+    )
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'org.eclipse.mylyn.github:org.eclipse.egit.github.core:5.1.0.201809111528-r'
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+}
+
+// NOTA BENE: with gradle 4.9 passing arguments has been made easier.
+run {
+    if (project.hasProperty("appArgs")) {
+        args Eval.me(appArgs)
+    }
+}
+
+task printEnv {
+    //println System.getenv("MICHELE")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+mainClassName = "com.elsevier.CurriculumProcessor"
