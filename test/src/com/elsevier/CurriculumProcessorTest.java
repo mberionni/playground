@@ -18,7 +18,7 @@ import com.elsevier.entities.CollaboratorInfo;
 import com.elsevier.utils.GitHubProperties;
 
 /* 
- * These tests only run successfully with my token
+ * The disabled test only runs successfully with my token
  */
 
 public class CurriculumProcessorTest {
@@ -41,7 +41,6 @@ public class CurriculumProcessorTest {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> cp.processUserRepos("aaa", ""));
 	}
 	
-	@Disabled
 	@Test
 	public void testUserNameProcess() {
 		CurriculumProcessor cp = new CurriculumProcessor();
@@ -61,25 +60,25 @@ public class CurriculumProcessorTest {
 			assertNotNull(collaboratorsInfo);
 			switch (repoName) {
 				case "webcrawler":
-					assertEquals(collaboratorsInfo.size(), 2, "2 collaborators expected");
-					assertEquals(collaboratorsInfo.get(0).getCollaborator().getLogin(), "mloop1", "expected collaborator is mloop1");
-					assertEquals(collaboratorsInfo.get(0).getCommits(), 6, "6 commits expected");
-					assertEquals(collaboratorsInfo.get(1).getCollaborator().getLogin(), "mberionni", "expected collaborator is mberionni");
-					assertEquals(collaboratorsInfo.get(1).getCommits(), 1, "1 commit expected");
+					assertEquals(2, collaboratorsInfo.size(), "2 collaborators expected");
+					assertEquals("mloop1", collaboratorsInfo.get(0).getCollaborator().getLogin(), "expected collaborator ");
+					assertEquals(6, collaboratorsInfo.get(0).getCommits(), "commits expected");
+					assertEquals("mberionni", collaboratorsInfo.get(1).getCollaborator().getLogin(), "expected collaborator");
+					assertEquals(0, collaboratorsInfo.get(1).getCommits(), "commits expected");
 					break;
 				case "Dijkstra2000":
-					assertEquals(collaboratorsInfo.size(), 2, "2 collaborators expected");
-					assertEquals(collaboratorsInfo.get(0).getCollaborator().getLogin(), "mloop1", "expected collaborator is mloop1");
-					assertEquals(collaboratorsInfo.get(0).getCommits(), 5, "5 commits expected");
-					assertEquals(collaboratorsInfo.get(1).getCollaborator().getLogin(), "mberionni", "expected collaborator is mberionni");
-					assertEquals(collaboratorsInfo.get(1).getCommits(), 4, "4 commit expected");
+					assertEquals(2, collaboratorsInfo.size(), "2 collaborators expected");
+					assertEquals("mloop1", collaboratorsInfo.get(0).getCollaborator().getLogin(), "expected collaborator");
+					assertEquals(5, collaboratorsInfo.get(0).getCommits(), "commits expected");
+					assertEquals("mberionni", collaboratorsInfo.get(1).getCollaborator().getLogin(), "expected collaborator");
+					assertEquals(0, collaboratorsInfo.get(1).getCommits(), "commits expected");
 					break;
 				case "uni":
-					assertEquals(collaboratorsInfo.size(), 2, "2 collaborators expected");
-					assertEquals(collaboratorsInfo.get(0).getCollaborator().getLogin(), "mberionni", "expected collaborator is mberionni");
-					assertEquals(collaboratorsInfo.get(0).getCommits(), 4, "4 commits expected");
-					assertEquals(collaboratorsInfo.get(1).getCollaborator().getLogin(), "mloop1", "expected collaborator is mloop1");
-					assertEquals(collaboratorsInfo.get(1).getCommits(), 0, "0 commit expected");
+					assertEquals(2, collaboratorsInfo.size(), "2 collaborators expected");
+					assertEquals("mberionni", collaboratorsInfo.get(0).getCollaborator().getLogin(), "expected collaborator");
+					assertEquals(2, collaboratorsInfo.get(0).getCommits(), "commits expected");
+					assertEquals("mloop1", collaboratorsInfo.get(1).getCollaborator().getLogin(), "expected collaborator ");
+					assertEquals(0, collaboratorsInfo.get(1).getCommits(), "commits expected");
 					break;
 			}
 		}

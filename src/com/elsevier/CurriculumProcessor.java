@@ -115,7 +115,7 @@ public class CurriculumProcessor {
 	
 	private long countCollaboratorCommits(User collaborator, List<RepositoryCommit> commits) {
 		return commits.stream()
-				 	  .filter(commit -> commit.getAuthor().getLogin().equals(collaborator.getLogin()))
+				 	  .filter(commit -> commit.getCommit().getAuthor().getName().equals(collaborator.getLogin()))
 				 	  .count();
 	}
 	

@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.egit.github.core.Commit;
+import org.eclipse.egit.github.core.CommitUser;
 import org.eclipse.egit.github.core.Repository;
 import org.eclipse.egit.github.core.RepositoryCommit;
 import org.eclipse.egit.github.core.User;
@@ -65,10 +67,15 @@ public class CurriculumProcessorTestMock {
 		collaborator.setLogin(COLLABO_NAME);
 		listCollaborators.add(collaborator);
 
-		RepositoryCommit commit = new RepositoryCommit();
-		commit.setAuthor(collaborator);
-		commit.setSha("1234");
-		listRepositoryCommits.add(commit);
+		RepositoryCommit repoCommit = new RepositoryCommit();
+		repoCommit.setAuthor(collaborator);
+		repoCommit.setSha("1234");
+		Commit commit = new Commit();
+		CommitUser commitUser = new CommitUser();
+		commitUser.setName(collaborator.getLogin());
+		commit.setAuthor(commitUser);
+		repoCommit.setCommit(commit);
+		listRepositoryCommits.add(repoCommit);
 		
 		when(repositoryService.getRepositories(user.getLogin())).thenReturn(listRepositories);
 		when(collaboratorService.getCollaborators(repo)).thenReturn(listCollaborators);
